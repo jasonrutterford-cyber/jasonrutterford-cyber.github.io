@@ -1,0 +1,23 @@
+---
+layout: none
+permalink: /llms.txt
+---
+# Jason Rutterford
+
+> Experience leader and experience architect based in Abu Dhabi, UAE. Helps leaders in government and large organisations find the real problem before they spend the money on it. Customer experience, service design, business process design, colleague experience and applied AI. Writes one plain piece a week.
+
+Who: Head of experience and experience architect with a career inside large organisations (telecoms, marketing, oil and gas, commercial, supply chain) in the UK and the UAE, mostly on the client side of the table. Runs discovery, sets design strategy and leads the teams that deliver it.
+
+Positioning: "I help leaders find the real problem before they spend the money on it."
+
+Contact: {{ site.contact.email }} · LinkedIn {{ site.contact.linkedin }} · X {{ site.contact.x }}
+
+## Pages
+- [Home]({{ "/" | absolute_url }}): positioning and what he does
+- [Writing]({{ "/writing/" | absolute_url }}): all articles
+- [About]({{ "/about/" | absolute_url }}): background, breadth of the work, how he works
+- [Contact]({{ "/contact/" | absolute_url }})
+
+## Articles
+{% for post in site.posts %}- [{{ post.title }}]({{ post.url | absolute_url }}): {{ post.subtitle | default: post.excerpt | strip_html | normalize_whitespace | truncate: 200 }}
+{% endfor %}

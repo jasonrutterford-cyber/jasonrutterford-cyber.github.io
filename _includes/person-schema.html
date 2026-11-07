@@ -1,0 +1,19 @@
+{% if page.url == "/" or page.url == "/about/" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Jason Rutterford",
+  "url": "{{ site.url }}",
+  "image": "{{ '/assets/img/jason.png' | absolute_url }}",
+  "jobTitle": "Head of Experience, Experience Architect",
+  "description": "{{ site.description | strip_newlines | strip }}",
+  "address": { "@type": "PostalAddress", "addressLocality": "Abu Dhabi", "addressCountry": "AE" },
+  "email": "mailto:{{ site.contact.email }}",
+  "sameAs": [{% for l in site.social.links %}"{{ l }}"{% unless forloop.last %}, {% endunless %}{% endfor %}],
+  "knowsAbout": ["Experience architecture", "Customer experience", "Service design", "Business process design", "Colleague experience", "Design strategy", "Discovery and user research", "Design leadership", "AI agents and agent design", "Digital transformation"],
+  "worksFor": { "@type": "Organization", "name": "Independent" },
+  "nationality": "British"
+}
+</script>
+{% endif %}

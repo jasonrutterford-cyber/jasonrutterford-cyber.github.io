@@ -18,7 +18,7 @@ description: Jason Rutterford, experience architect in Abu Dhabi. Customer exper
 </section>
 <section class="section" style="padding-top:0">
 <div class="wrap">
-<div class="article-body" style="margin:0">
+<div class="article-body" style="margin:0" markdown="1">
 
 ## The short version
 

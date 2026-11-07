@@ -3,6 +3,8 @@ title: "We used to design for humans. Now we design for agents too."
 subtitle: "Most teams don't need to build an agent. They need to teach the ones they already have, starting from the person the agent serves."
 date: 2026-11-07
 cover: /assets/img/posts/design-for-agents-cover.png
+image: /assets/img/posts/design-for-agents-cover.png
+description: "Most teams don't need to build an AI agent. Claude, Copilot and ChatGPT already are the agents; the work is teaching them your context with the right skills and MCPs, starting from the person they serve. The Agent Empathy Canvas, with a worked example and job stories."
 cover_alt: "We used to design for humans. Now we design for agents, too. A person at a screen, and an AI agent acting on their behalf with email, calendar, travel policy and bookings."
 tags: [Agent design, UX, Service design, AI]
 ---

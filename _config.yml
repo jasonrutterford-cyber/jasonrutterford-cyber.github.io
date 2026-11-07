@@ -4,10 +4,13 @@
 # ------------------------------------------------------------
 
 title: Jason Rutterford
-tagline: Experience leader and architect
+tagline: Experience leader and architect in Abu Dhabi
 description: >-
-  I help leaders find the real problem before they spend the money on it.
-  Head of experience, experience architect. Discovery, design strategy, leadership, AI.
+  Jason Rutterford is an experience leader and experience architect in Abu Dhabi, UAE.
+  He helps leaders in government and large organisations find the real problem before
+  they spend the money on it: customer experience, service design, business process
+  design, colleague experience and applied AI. Weekly writing, said plainly.
+keywords: "Jason Rutterford, experience architect, experience design, customer experience, service design, design strategy, UX leadership, Abu Dhabi, UAE, consultant, AI agents"
 url: "https://jasonrutterford-cyber.github.io"
 baseurl: ""
 lang: en
@@ -15,12 +18,26 @@ lang: en
 author:
   name: Jason Rutterford
   location: Abu Dhabi, UAE
+  job_title: Head of Experience, Experience Architect
+
+# Used by search engines and link previews (jekyll-seo-tag)
+logo: /assets/img/jason.png
+image: /assets/img/illustrations/hero.png
+twitter:
+  username: JasonRutterford
+  card: summary_large_image
+social:
+  name: Jason Rutterford
+  links:
+    - https://www.linkedin.com/in/jason-rutterford-658a4347/
+    - https://x.com/JasonRutterford
+    - https://github.com/jasonrutterford-cyber
 
 # Contact details shown on the Contact page and in the footer.
 # Leave any line blank ("") to hide it.
 contact:
   email: "jason.rutterford@gmail.com"
-  linkedin: "https://www.linkedin.com/in/jasonrutterford"
+  linkedin: "https://www.linkedin.com/in/jason-rutterford-658a4347/"
   x: "https://x.com/JasonRutterford"
 
 # Newsletter. Leave `action` blank until you have a provider.
@@ -55,6 +72,11 @@ defaults:
       type: posts
     values:
       layout: post
+      author: Jason Rutterford
+  - scope:
+      path: ""
+    values:
+      image: /assets/img/illustrations/hero.png
 exclude:
   - README.md
   - Gemfile
