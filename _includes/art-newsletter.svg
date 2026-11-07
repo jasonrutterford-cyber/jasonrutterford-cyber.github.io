@@ -1,0 +1,17 @@
+<svg class="art" viewBox="0 0 200 170" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="n-all" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14B87A"/><stop offset=".5" stop-color="#2F6BFF"/><stop offset="1" stop-color="#7B3FE4"/></linearGradient>
+    <linearGradient id="n-bp" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2F6BFF"/><stop offset="1" stop-color="#7B3FE4"/></linearGradient>
+  </defs>
+  <g stroke-linejoin="round" stroke-linecap="round">
+    <path d="M14 120 C 40 60, 70 60, 100 100 S 160 130, 186 70" fill="none" stroke="url(#n-bp)" stroke-width="3.5" stroke-dasharray="1 9"/>
+    <g transform="translate(48 50) rotate(-6)">
+      <rect x="4" y="4" width="110" height="76" rx="12" fill="#BCC3D0"/>
+      <rect x="0" y="0" width="110" height="76" rx="12" fill="#fff" stroke="#151A22" stroke-width="3.5"/>
+      <path d="M6 10 L55 46 L104 10" fill="none" stroke="#151A22" stroke-width="3.5"/>
+      <rect x="14" y="54" width="50" height="10" rx="5" fill="url(#n-all)"/>
+    </g>
+    <circle cx="158" cy="38" r="9" fill="url(#n-bp)" stroke="#151A22" stroke-width="2.5"/>
+    <circle cx="26" cy="128" r="7" fill="#fff" stroke="#151A22" stroke-width="2.5"/>
+  </g>
+</svg>

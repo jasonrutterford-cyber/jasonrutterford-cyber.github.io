@@ -1,0 +1,63 @@
+# ------------------------------------------------------------
+# Jason Rutterford — site settings
+# Edit the values below. Everything else can stay as it is.
+# ------------------------------------------------------------
+
+title: Jason Rutterford
+tagline: Experience leader and architect
+description: >-
+  I help leaders find the real problem before they spend the money on it.
+  Head of experience, experience architect. Discovery, design strategy, leadership, AI.
+url: "https://jasonrutterford-cyber.github.io"
+baseurl: ""
+lang: en
+
+author:
+  name: Jason Rutterford
+  location: Abu Dhabi, UAE
+
+# Contact details shown on the Contact page and in the footer.
+# Leave any line blank ("") to hide it.
+contact:
+  email: "jason.rutterford@gmail.com"
+  linkedin: "https://www.linkedin.com/in/jasonrutterford"
+  x: "https://x.com/JasonRutterford"
+
+# Newsletter. Leave `action` blank until you have a provider.
+# Kit (kit.com) and Buttondown (buttondown.com) are both free to start.
+#   Kit:        action is the form's "action" URL from Kit's HTML embed; field_name: email_address
+#   Buttondown: action: https://buttondown.com/api/emails/embed-subscribe/YOUR-USERNAME ; field_name: email
+newsletter:
+  enabled: false      # set to true when the list is ready
+  action: ""
+  field_name: "email"
+  heading: "One plain piece a week"
+  blurb: "No hype, no jargon. One idea a week on finding the real problem, written to be read in five minutes."
+
+# --- Jekyll ---
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter_opts:
+    disable: true
+permalink: /writing/:title/
+timezone: Asia/Dubai
+excerpt_separator: "<!--more-->"
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+feed:
+  path: feed.xml
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - preview-build.mjs
+  - node_modules

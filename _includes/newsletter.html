@@ -1,0 +1,22 @@
+<section class="newsletter" id="newsletter">
+  <div class="wrap">
+    <div class="card">
+      <div>
+        <h2>{{ site.newsletter.heading }}</h2>
+        <p>{{ site.newsletter.blurb }}</p>
+        {% if site.newsletter.action != "" %}
+        <form action="{{ site.newsletter.action }}" method="post" target="_blank">
+          <label class="skip" for="nl-email">Email address</label>
+          <input id="nl-email" type="email" name="{{ site.newsletter.field_name }}" placeholder="you@example.com" required autocomplete="email">
+          <button class="btn primary" type="submit">Subscribe</button>
+        </form>
+        <p class="small muted" style="margin-top:10px">No spam, unsubscribe any time.</p>
+        {% else %}
+        <p class="fallback"><a class="btn" href="mailto:{{ site.contact.email }}?subject=Subscribe&body=Please%20add%20me%20to%20the%20list.">Email me “subscribe”</a></p>
+        <p class="small muted" style="margin-top:10px">The list is being set up. Email me now and I’ll add you when it starts.</p>
+        {% endif %}
+      </div>
+      {% include art-newsletter.svg %}
+    </div>
+  </div>
+</section>

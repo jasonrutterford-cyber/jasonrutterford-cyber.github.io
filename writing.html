@@ -1,0 +1,32 @@
+---
+layout: default
+title: Writing
+permalink: /writing/
+description: One plain piece a week on finding the real problem, customer and colleague experience, service design and AI in real organisations.
+---
+<section class="section glow" style="padding-top:40px">
+  <div class="wrap">
+    <h1>Writing</h1>
+    <p class="lead measure">One substantial piece a week. Patterns and principles from inside large organisations, never specifics. Written to be read in five minutes.</p>
+  </div>
+</section>
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    {% if site.posts.size == 0 %}
+    <div class="card soft"><p>Nothing here yet. The first piece is on its way.</p></div>
+    {% else %}
+    <ul class="post-list">
+      {% for post in site.posts %}
+      <li class="post-card">
+        {% if post.cover %}<a class="cover" href="{{ post.url | relative_url }}" aria-hidden="true" tabindex="-1"><img src="{{ post.cover | relative_url }}" alt="" loading="lazy"></a>{% endif %}
+        <div class="body">
+          <p class="meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%-d %B %Y" }}</time></p>
+          <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+          <p>{{ post.excerpt | strip_html | normalize_whitespace | truncate: 160 }}</p>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+</section>

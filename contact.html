@@ -1,0 +1,27 @@
+---
+layout: default
+title: Contact
+permalink: /contact/
+description: Get in touch with Jason Rutterford. Email, LinkedIn and X. Coffee in Abu Dhabi to compare notes is always welcome.
+---
+<section class="section glow" style="padding-top:40px">
+  <div class="wrap contact-grid">
+    <div>
+      <h1>Say hello</h1>
+      <p class="lead">If you're working on a similar problem and want to compare notes, I'd like to hear from you. Coffee in Abu Dhabi suits me best; a call works too.</p>
+      <ul class="contact-list">
+        {% if site.contact.email != "" %}
+        <li><a href="mailto:{{ site.contact.email }}"><span class="ico">@</span><span>Email<small>{{ site.contact.email }}</small></span></a></li>
+        {% endif %}
+        {% if site.contact.linkedin != "" %}
+        <li><a href="{{ site.contact.linkedin }}"><span class="ico g">in</span><span>LinkedIn<small>{{ site.contact.linkedin | remove: "https://" | remove: "www." }}</small></span></a></li>
+        {% endif %}
+        {% if site.contact.x != "" %}
+        <li><a href="{{ site.contact.x }}"><span class="ico p">X</span><span>X<small>{{ site.contact.x | remove: "https://" }}</small></span></a></li>
+        {% endif %}
+      </ul>
+      <p class="small muted" style="margin-top:22px">I reply to everything, usually within a few days. No pitches needed, and none given.</p>
+    </div>
+    <div><img class="framed" src="{{ '/assets/img/illustrations/contact.png' | relative_url }}" alt="Two people comparing notes over coffee" width="1536" height="1024"></div>
+  </div>
+</section>

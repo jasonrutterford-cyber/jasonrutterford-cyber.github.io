@@ -1,0 +1,33 @@
+---
+layout: default
+---
+<article class="wrap">
+  <header class="article-head">
+    <p class="meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time>
+      <span class="dot"></span>
+      {% assign words = content | strip_html | number_of_words %}{{ words | divided_by: 200 | plus: 1 }} min read
+    </p>
+    <h1>{{ page.title }}</h1>
+    {% if page.subtitle %}<p class="lead">{{ page.subtitle }}</p>{% endif %}
+  </header>
+
+  {% if page.cover %}
+  <figure class="article-cover">
+    <img src="{{ page.cover | relative_url }}" alt="{{ page.cover_alt | default: page.title }}" width="1600" height="900">
+  </figure>
+  {% endif %}
+
+  <div class="article-body">
+    {{ content }}
+  </div>
+
+  <footer class="article-foot">
+    {% if page.tags.size > 0 %}
+    <div class="tags">{% for tag in page.tags %}<span>{{ tag }}</span>{% endfor %}</div>
+    {% endif %}
+    <p style="margin-top:20px">
+      <a class="btn" href="{{ '/writing/' | relative_url }}">← More writing</a>
+    </p>
+  </footer>
+</article>

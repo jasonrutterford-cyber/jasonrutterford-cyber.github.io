@@ -1,0 +1,62 @@
+---
+layout: default
+title: Jason Rutterford
+description: I help leaders find the real problem before they spend the money on it. Experience architect in Abu Dhabi, writing plainly on customer experience, service design and AI.
+---
+<section class="hero glow">
+  <div class="wrap grid">
+    <div>
+      <h1>I help leaders find the real problem <span class="grad-text">before they spend the money on it.</span></h1>
+      <p class="lead">Head of experience and experience architect in Abu Dhabi. I run discovery, set design strategy and lead the teams that deliver it, inside large organisations rather than at an agency. I write about what that teaches you, plainly.</p>
+      <div class="btn-row">
+        <a class="btn primary" href="{{ '/writing/' | relative_url }}">Read the writing</a>
+        <a class="btn" href="{{ '/contact/' | relative_url }}">Compare notes over coffee</a>
+      </div>
+    </div>
+    <div><img class="art" src="{{ '/assets/img/illustrations/hero.png' | relative_url }}" alt="A leader looks through a magnifying glass at a tangle of lines, past three competing demands, to find the real problem" width="1536" height="1024"></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head"><h2>What I do</h2></div>
+    <div class="three">
+      <div class="card">
+        <img class="spot" src="{{ '/assets/img/illustrations/discovery.png' | relative_url }}" alt="" width="700" height="700" loading="lazy">
+        <div class="body"><h3>Discovery</h3>
+        <p>Research, journey and lifecycle mapping, and the hard conversations that turn a vague ask into a clear problem with achievable outcomes. Customers, citizens and the colleagues who serve them.</p></div>
+      </div>
+      <div class="card">
+        <img class="spot" src="{{ '/assets/img/illustrations/strategy.png' | relative_url }}" alt="" width="700" height="700" loading="lazy">
+        <div class="body"><h3>Design strategy and architecture</h3>
+        <p>Service design, business process design and experience architecture: deciding where to invest, in what order, and what the end-to-end experience should be before anyone builds.</p></div>
+      </div>
+      <div class="card">
+        <img class="spot" src="{{ '/assets/img/illustrations/leadership.png' | relative_url }}" alt="" width="700" height="700" loading="lazy">
+        <div class="body"><h3>Leadership, with AI applied</h3>
+        <p>Building and leading experience functions, setting the operating model and standards, and using AI where it speeds the work up, starting from the person it serves.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:8px">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Latest writing</h2>
+      <a href="{{ '/writing/' | relative_url }}">All writing →</a>
+    </div>
+    <ul class="post-list">
+      {% for post in site.posts limit:2 %}
+      <li class="post-card">
+        {% if post.cover %}<a class="cover" href="{{ post.url | relative_url }}" aria-hidden="true" tabindex="-1"><img src="{{ post.cover | relative_url }}" alt="" loading="lazy"></a>{% endif %}
+        <div class="body">
+          <p class="meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%-d %B %Y" }}</time></p>
+          <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+          <p>{{ post.excerpt | strip_html | normalize_whitespace | truncate: 150 }}</p>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
