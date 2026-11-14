@@ -30,7 +30,9 @@ Discovery has a bad name with leaders, and I understand why. It sounds like week
 
 So I've turned it into an hour. The person who asked for the AI sits down with an agent in whatever tool they already use: Copilot, ChatGPT or Claude. It asks fifteen questions, one at a time, keeps asking why until the answer is clear, and writes a one-page brief you can sign off. No workshop. No research team. Nobody learns a new tool.
 
-The agent is a page of text. It's free, and it's at the bottom of this article.
+The agent is a page of text, and it's free.
+
+{% include tool-callout.html %}
 
 ## What it asks, and why it matters to you
 
@@ -70,7 +72,9 @@ A brief you can sign off and your team can build from. It traces back to a real 
 
 ## Get the tool
 
-**[Download the AI Brief Builder](/tools/ai-brief-builder/)** — a zip with the agent as a Claude skill, as instructions for a Copilot agent or a custom GPT, and the worked example. Give it to the person who asked for the AI, not to the developers. An hour later you'll have the brief.
+{% include tool-callout.html %}
+
+The zip has the agent as a Claude skill, as instructions for a Copilot agent or a custom GPT, and the worked example. Give it to the person who asked for the AI, not to the developers. An hour later you'll have the brief.
 
 Some of those briefs will come back saying the problem doesn't need an agent. That's not the process failing. That's the cheapest no you'll get all year.
 

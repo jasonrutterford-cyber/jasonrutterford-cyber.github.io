@@ -280,7 +280,7 @@ p { margin: 0 0 1.1em; }
 .tool-feature-body .btn-row { margin-top: 10px; }
 @media (max-width: 760px) { .tool-feature { grid-template-columns: 1fr; } .tool-feature > img { height: 220px; border-right: 0; border-bottom: 2.5px solid var(--ink); } }
 
-.tool-callout { max-width: var(--measure); margin: 28px auto; background: var(--white); border: 2.5px solid var(--ink); border-radius: var(--radius); box-shadow: 5px 5px 0 var(--shadow); padding: 22px 26px; display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: center; }
+.tool-callout { max-width: var(--measure); margin: 1.6em auto; background: var(--white); border: 2.5px solid var(--ink); border-radius: var(--radius); box-shadow: 5px 5px 0 var(--shadow); padding: 22px 26px; display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: center; }
 .tool-callout h3 { margin: 6px 0 6px; font-size: 24px; }
 .tool-callout h3 a { color: var(--ink); text-decoration: none; }
 .tool-callout h3 a:hover { color: var(--blue); }
