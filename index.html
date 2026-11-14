@@ -1,63 +1,86 @@
 ---
 layout: default
 title: Jason Rutterford
-description: Jason Rutterford, experience leader and experience architect in Abu Dhabi. I help leaders find the real problem before they spend the money on it. Customer experience, service design, design strategy and applied AI, written plainly.
+description: Most large investments go wrong before they start. Jason Rutterford advises leaders on what's actually going on, and what to do about it, before the money is spent. Sixteen years on the client side of large organisations. Writing from Abu Dhabi.
 ---
-<section class="hero glow">
+<section class="hero hero-compact glow">
   <div class="wrap grid">
     <div>
-      <p class="eyebrow">Jason Rutterford · Experience leader and architect · Abu Dhabi</p>
-      <h1>I help leaders find the real problem <span class="grad-text">before they spend the money on it.</span></h1>
-      <p class="lead">Head of experience and experience architect in Abu Dhabi. I run discovery, set design strategy and lead the teams that deliver it, inside large organisations rather than at an agency. I write about what that teaches you, plainly.</p>
-      <div class="btn-row">
-        <a class="btn primary" href="{{ '/writing/' | relative_url }}">Read the writing</a>
-        <a class="btn" href="{{ '/contact/' | relative_url }}">Compare notes over coffee</a>
-      </div>
+      <p class="eyebrow">Jason Rutterford · Writing from Abu Dhabi</p>
+      <h1>Most large investments go wrong before they start. <span class="grad-text">I advise leaders on what's actually going on, and what to do about it, before the money is spent.</span></h1>
+      <p class="lead">Sixteen years on the client side of large organisations, in telecoms, retail, energy and supply chain. Experience, service and process design, with AI applied. Based in Abu Dhabi, working anywhere.</p>
     </div>
     <div><img class="art" src="{{ '/assets/img/illustrations/hero.png' | relative_url }}" alt="A leader looks through a magnifying glass at a tangle of lines, past three competing demands, to find the real problem" width="1536" height="1024"></div>
   </div>
 </section>
 
-<section class="section">
-  <div class="wrap">
-    <div class="section-head"><h2>What I do</h2></div>
-    <div class="three">
-      <div class="card">
-        <img class="spot" src="{{ '/assets/img/illustrations/discovery.png' | relative_url }}" alt="" width="700" height="700" loading="lazy">
-        <div class="body"><h3>Discovery</h3>
-        <p>Research, journey and lifecycle mapping, and the hard conversations that turn a vague ask into a clear problem with achievable outcomes. Customers, citizens and the colleagues who serve them.</p></div>
-      </div>
-      <div class="card">
-        <img class="spot" src="{{ '/assets/img/illustrations/strategy.png' | relative_url }}" alt="" width="700" height="700" loading="lazy">
-        <div class="body"><h3>Design strategy and architecture</h3>
-        <p>Service design, business process design and experience architecture: deciding where to invest, in what order, and what the end-to-end experience should be before anyone builds.</p></div>
-      </div>
-      <div class="card">
-        <img class="spot" src="{{ '/assets/img/illustrations/leadership.png' | relative_url }}" alt="" width="700" height="700" loading="lazy">
-        <div class="body"><h3>Leadership, with AI applied</h3>
-        <p>Building and leading experience functions, setting the operating model and standards, and using AI where it speeds the work up, starting from the person it serves.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section" style="padding-top:8px">
+{% assign latest = site.posts.first %}
+{% if latest %}
+<section class="section featured-section">
   <div class="wrap">
     <div class="section-head">
-      <h2>Latest writing</h2>
+      <h2>Latest</h2>
       <a href="{{ '/writing/' | relative_url }}">All writing →</a>
     </div>
-    <ul class="post-list">
-      {% for post in site.posts limit:2 %}
+    <article class="featured">
+      {% if latest.cover %}<a class="featured-cover" href="{{ latest.url | relative_url }}" aria-hidden="true" tabindex="-1"><img src="{{ latest.cover | relative_url }}" alt="" width="1600" height="900"></a>{% endif %}
+      <div class="featured-body">
+        <p class="meta"><time datetime="{{ latest.date | date_to_xmlschema }}">{{ latest.date | date: "%-d %B %Y" }}</time>{% assign words = latest.content | strip_html | number_of_words %}<span class="dot"></span>{{ words | divided_by: 200 | plus: 1 }} min read</p>
+        <h3><a href="{{ latest.url | relative_url }}">{{ latest.title }}</a></h3>
+        {% if latest.subtitle %}<p class="featured-sub">{{ latest.subtitle }}</p>{% else %}<p class="featured-sub">{{ latest.excerpt | strip_html | normalize_whitespace | truncate: 200 }}</p>{% endif %}
+        <a class="btn primary" href="{{ latest.url | relative_url }}">Read the piece</a>
+      </div>
+    </article>
+
+    {% if site.posts.size >= 3 %}
+    <ul class="post-list more-list">
+      {% for post in site.posts offset:1 limit:3 %}
       <li class="post-card">
         {% if post.cover %}<a class="cover" href="{{ post.url | relative_url }}" aria-hidden="true" tabindex="-1"><img src="{{ post.cover | relative_url }}" alt="" loading="lazy"></a>{% endif %}
         <div class="body">
           <p class="meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%-d %B %Y" }}</time></p>
           <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-          <p>{{ post.excerpt | strip_html | normalize_whitespace | truncate: 150 }}</p>
+          <p>{{ post.subtitle | default: post.excerpt | strip_html | normalize_whitespace | truncate: 150 }}</p>
         </div>
       </li>
       {% endfor %}
     </ul>
+    {% endif %}
+  </div>
+</section>
+{% endif %}
+
+<section class="section" style="padding-top:16px">
+  <div class="wrap">
+    <div class="section-head"><h2>What this writing is about</h2></div>
+    <div class="three">
+      <div class="card">
+        <img class="spot" src="{{ '/assets/img/illustrations/discovery.png' | relative_url }}" alt="" width="700" height="700" loading="lazy">
+        <div class="body"><h3>Before you fund it</h3>
+        <p>Getting from "can AI do that?" to a problem worth paying to solve, in the time you actually have. What to check before you sign, and what it costs to check it.</p></div>
+      </div>
+      <div class="card">
+        <img class="spot" src="{{ '/assets/img/illustrations/strategy.png' | relative_url }}" alt="" width="700" height="700" loading="lazy">
+        <div class="body"><h3>Before you brief them</h3>
+        <p>What the agency, vendor or internal team needs from you that they rarely ask for, so the money lands on the right thing and gets used.</p></div>
+      </div>
+      <div class="card">
+        <img class="spot" src="{{ '/assets/img/illustrations/leadership.png' | relative_url }}" alt="" width="700" height="700" loading="lazy">
+        <div class="body"><h3>While it's being built</h3>
+        <p>Keeping the service, the process and the people in the frame, so what ships is what was needed, and you can tell whether it worked.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section byline-section">
+  <div class="wrap">
+    <div class="byline card soft">
+      <img src="{{ '/assets/img/jason.png' | relative_url }}" alt="Jason Rutterford" width="940" height="940">
+      <div>
+        <p><strong>Written by Jason Rutterford.</strong> Head of experience inside a large organisation by day; one piece a week here, said plainly, about patterns rather than places.</p>
+        <p class="small"><a href="{{ '/about/' | relative_url }}">More about me</a> · <a href="{{ '/contact/' | relative_url }}">Compare notes over coffee</a></p>
+      </div>
+    </div>
   </div>
 </section>
