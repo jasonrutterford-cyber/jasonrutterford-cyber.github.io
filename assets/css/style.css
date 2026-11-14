@@ -257,3 +257,35 @@ p { margin: 0 0 1.1em; }
 .hero-centred .eyebrow { margin-bottom: 18px; }
 .hero-centred h1 { font-size: clamp(30px, 3.9vw, 46px); line-height: 1.14; margin: 0 auto 18px; }
 .hero-centred .lead { font-size: clamp(17px, 1.6vw, 19px); max-width: 680px; margin: 0 auto; }
+
+/* ---------- tools ---------- */
+.tool-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.tool-card { display: flex; flex-direction: column; justify-content: space-between; padding: 26px 28px; }
+.tool-card h3 { margin: 0 0 8px; font-size: 24px; }
+.tool-card h3 a { color: var(--ink); text-decoration: none; }
+.tool-card h3 a:hover { color: var(--blue); }
+.tool-card p { margin: 0; color: var(--ink2); font-size: 16.5px; }
+.tool-card .btn-row { margin-top: 18px; }
+@media (max-width: 760px) { .tool-list { grid-template-columns: 1fr; } }
+
+.tool-feature { display: grid; grid-template-columns: 300px 1fr; gap: 0; padding: 0; overflow: hidden; }
+.tool-feature > img { width: 100%; height: 100%; object-fit: contain; padding: 18px; box-sizing: border-box; border-right: 2.5px solid var(--ink); background: var(--paper); display: block; }
+.tool-feature-body { padding: 28px 34px 30px; display: flex; flex-direction: column; gap: 10px; }
+.tool-feature-body h3 { margin: 0; font-size: 30px; }
+.tool-feature-body h3 a { color: var(--ink); text-decoration: none; }
+.tool-feature-body h3 a:hover { color: var(--blue); }
+.tool-feature-body p { margin: 0; color: var(--ink2); font-size: 17px; }
+.tool-feature-body .meta { gap: 12px; }
+.tool-feature-body .tile { font-size: 13px; padding: 3px 10px; box-shadow: 2px 2px 0 var(--ink); }
+.tool-feature-body .btn-row { margin-top: 10px; }
+@media (max-width: 760px) { .tool-feature { grid-template-columns: 1fr; } .tool-feature > img { height: 220px; border-right: 0; border-bottom: 2.5px solid var(--ink); } }
+
+.tool-callout { max-width: var(--measure); margin: 28px auto; background: var(--white); border: 2.5px solid var(--ink); border-radius: var(--radius); box-shadow: 5px 5px 0 var(--shadow); padding: 22px 26px; display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: center; }
+.tool-callout h3 { margin: 6px 0 6px; font-size: 24px; }
+.tool-callout h3 a { color: var(--ink); text-decoration: none; }
+.tool-callout h3 a:hover { color: var(--blue); }
+.tool-callout p { margin: 0; color: var(--ink2); font-size: 16px; }
+.tool-callout .tile { font-size: 13px; padding: 3px 10px; box-shadow: 2px 2px 0 var(--ink); }
+.tool-callout .btn-row { margin: 0; flex-direction: column; align-items: stretch; }
+.tool-callout .btn { justify-content: center; }
+@media (max-width: 700px) { .tool-callout { grid-template-columns: 1fr; } .tool-callout .btn-row { flex-direction: row; } }

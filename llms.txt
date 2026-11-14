@@ -16,8 +16,12 @@ Contact: {{ site.contact.email }} · LinkedIn {{ site.contact.linkedin }} · X {
 - [Home]({{ "/" | absolute_url }}): positioning and what he does
 - [Writing]({{ "/writing/" | absolute_url }}): all articles
 - [About]({{ "/about/" | absolute_url }}): background, breadth of the work, how he works
+- [Tools]({{ "/tools/" | absolute_url }}): free agents and templates
 - [Contact]({{ "/contact/" | absolute_url }})
 
+## Tools (free, run in Claude, ChatGPT or Copilot)
+{% for tool in site.data.tools %}- [{{ tool.name }}]({{ tool.url | absolute_url }}): {{ tool.summary }} Download: {{ tool.download | absolute_url }}
+{% endfor %}
 ## Articles
 {% for post in site.posts %}- [{{ post.title }}]({{ post.url | absolute_url }}): {{ post.subtitle | default: post.excerpt | strip_html | normalize_whitespace | truncate: 200 }}
 {% endfor %}

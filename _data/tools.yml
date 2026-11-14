@@ -1,0 +1,8 @@
+# One entry per tool. Add a new tool here and it appears on /tools/ and the home page.
+- name: AI Brief Builder
+  summary: An agent that interviews the person asking for an AI project and writes the one-page brief a leader can sign off. Works in Claude, ChatGPT and Copilot. Free.
+  url: /tools/ai-brief-builder/
+  download: /assets/downloads/ai-brief-builder.zip
+  image: /assets/img/posts/did-anyone-ask-what-problem-it-solves/questions-to-brief.png
+  article: /writing/did-anyone-ask-what-problem-it-solves/
+  date: 2026-11-14

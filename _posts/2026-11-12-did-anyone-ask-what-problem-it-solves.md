@@ -6,6 +6,7 @@ cover: /assets/img/posts/did-anyone-ask-what-problem-it-solves/cover.png
 image: /assets/img/posts/did-anyone-ask-what-problem-it-solves/cover.png
 cover_alt: "Two figures either side of a desk. One hands a single sheet of paper across; a small stack of notes sits between them."
 description: "Most AI requests arrive as a solution, not a problem. You don't need a discovery phase, you need a brief: an hour with an agent, fifteen questions, one page you can sign off. The tool is free."
+tool: AI Brief Builder
 tags: [AI, Leadership, Agent design, Service design]
 ---
 

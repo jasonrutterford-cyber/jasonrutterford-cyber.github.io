@@ -1,0 +1,13 @@
+{% if page.tool %}{% assign t = site.data.tools | where: "name", page.tool | first %}{% if t %}
+<aside class="tool-callout" aria-label="Free tool from this article">
+  <div class="tool-callout-text">
+    <p class="meta"><span class="tile green">Free tool</span><span>Runs in Claude, ChatGPT or Copilot</span></p>
+    <h3><a href="{{ t.url | relative_url }}">{{ t.name }}</a></h3>
+    <p>{{ t.summary }}</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn primary" href="{{ t.download | relative_url }}">Download</a>
+    <a class="btn" href="{{ t.url | relative_url }}">How to use it</a>
+  </div>
+</aside>
+{% endif %}{% endif %}

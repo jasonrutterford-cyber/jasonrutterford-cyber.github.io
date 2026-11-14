@@ -1,0 +1,33 @@
+---
+layout: default
+title: Tools
+permalink: /tools/
+description: Free tools from Jason Rutterford for leaders and the people around them — agents and templates you can run in Claude, ChatGPT or Copilot today. Each one comes from a real piece of work, written up as a pattern.
+---
+<section class="section glow" style="padding-top:40px">
+  <div class="wrap">
+    <h1>Tools</h1>
+    <p class="lead measure">The things I use, packaged so you can use them too. Each one is a page of text you drop into Claude, ChatGPT or Copilot. No budget, no connectors, no project. Every tool comes with the article that explains why it exists.</p>
+  </div>
+</section>
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <ul class="tool-list">
+      {% assign tools = site.data.tools | sort: "date" | reverse %}
+      {% for tool in tools %}
+      <li class="tool-card card">
+        <div>
+          <h3><a href="{{ tool.url | relative_url }}">{{ tool.name }}</a></h3>
+          <p>{{ tool.summary }}</p>
+        </div>
+        <div class="btn-row" style="margin-top:14px">
+          <a class="btn primary" href="{{ tool.download | relative_url }}">Download</a>
+          <a class="btn" href="{{ tool.url | relative_url }}">How to use it</a>
+          {% if tool.article %}<a class="btn" href="{{ tool.article | relative_url }}">The article</a>{% endif %}
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    <p class="small muted" style="margin-top:28px">Everything here is built on my own time from patterns, not from any employer's work or data. Use it, change it, pass it on.</p>
+  </div>
+</section>

@@ -47,6 +47,47 @@ description: Jason Rutterford advises leaders on what's actually going on, and w
 </section>
 {% endif %}
 
+<section class="section tools-band" style="padding-top:8px">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Free tools</h2>
+      <a href="{{ '/tools/' | relative_url }}">All tools →</a>
+    </div>
+    {% assign tools = site.data.tools | sort: "date" | reverse %}
+    {% assign featured_tool = tools.first %}
+    <div class="tool-feature card">
+      <img src="{{ featured_tool.image | default: '/assets/img/illustrations/strategy.png' | relative_url }}" alt="" width="700" height="700" loading="lazy">
+      <div class="tool-feature-body">
+        <p class="meta"><span class="tile green">Free</span><span>Runs in Claude, ChatGPT or Copilot</span></p>
+        <h3><a href="{{ featured_tool.url | relative_url }}">{{ featured_tool.name }}</a></h3>
+        <p>{{ featured_tool.summary }}</p>
+        <p class="small muted">The things I use, packaged so you can use them. A page of text each, no budget, no project. Every tool comes with the article that explains why it exists.</p>
+        <div class="btn-row">
+          <a class="btn primary" href="{{ featured_tool.download | relative_url }}">Download</a>
+          <a class="btn" href="{{ featured_tool.url | relative_url }}">How to use it</a>
+          {% if featured_tool.article %}<a class="btn" href="{{ featured_tool.article | relative_url }}">The article</a>{% endif %}
+        </div>
+      </div>
+    </div>
+    {% if tools.size > 1 %}
+    <ul class="tool-list" style="margin-top:24px">
+      {% for tool in tools offset:1 limit:2 %}
+      <li class="tool-card card">
+        <div>
+          <h3><a href="{{ tool.url | relative_url }}">{{ tool.name }}</a></h3>
+          <p>{{ tool.summary }}</p>
+        </div>
+        <div class="btn-row" style="margin-top:14px">
+          <a class="btn primary" href="{{ tool.download | relative_url }}">Download</a>
+          <a class="btn" href="{{ tool.url | relative_url }}">How to use it</a>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+</section>
+
 <section class="section" style="padding-top:16px">
   <div class="wrap">
     <div class="section-head"><h2>What I write about</h2></div>
@@ -75,7 +116,7 @@ description: Jason Rutterford advises leaders on what's actually going on, and w
     <div class="byline card soft">
       <img src="{{ '/assets/img/jason.png' | relative_url }}" alt="Jason Rutterford" width="940" height="940">
       <div>
-        <p><strong>Written by Jason Rutterford.</strong> Head of experience inside a large organisation by day; one piece a week here, said plainly, about patterns rather than places.</p>
+        <p><strong>Written by Jason Rutterford.</strong> Head of experience inside a large organisation by day. One piece a week here, said plainly, about patterns rather than places, and the tools I use, free to take.</p>
         <p class="small"><a href="{{ '/about/' | relative_url }}">More about me</a> · <a href="{{ '/contact/' | relative_url }}">Compare notes over coffee</a></p>
       </div>
     </div>
