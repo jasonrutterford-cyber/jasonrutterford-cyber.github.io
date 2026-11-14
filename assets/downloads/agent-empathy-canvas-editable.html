@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent Empathy Canvas</title>
+<style>
+  :root{
+    --ink:#1b1f24; --muted:#5b6470; --line:#d9dee5; --bg:#f4f6f8; --card:#ffffff;
+    --accent:#0f6fff; --accent-soft:#e8f0ff; --warn:#b45309; --warn-soft:#fff4e5;
+    --ok:#047857; --ok-soft:#e6f6f0; --violet:#6d28d9; --violet-soft:#f1ecfd;
+    --radius:12px; --gap:14px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+  .wrap{max-width:1500px;margin:0 auto;padding:24px}
+  header{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;justify-content:space-between;margin-bottom:18px}
+  header h1{margin:0;font-size:26px;letter-spacing:-.01em}
+  header p{margin:4px 0 0;color:var(--muted)}
+  .toolbar{display:flex;gap:8px;flex-wrap:wrap}
+  button{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:8px 12px;border-radius:8px;font-size:13px;cursor:pointer}
+  button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+  button:hover{filter:brightness(.97)}
+
+  .identity{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap);margin-bottom:var(--gap)}
+  .grid{display:grid;grid-template-columns:1.1fr 1fr 1fr 1fr 1.1fr;grid-template-rows:auto auto;gap:var(--gap)}
+  .outputs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--gap);margin-top:var(--gap)}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;min-height:150px;display:flex;flex-direction:column}
+  .card h2{margin:0 0 2px;font-size:14px;text-transform:uppercase;letter-spacing:.06em}
+  .card .q{margin:0 0 10px;font-size:13px;color:var(--muted)}
+  .card ul{margin:0;padding-left:18px;flex:1}
+  .card li{margin:4px 0}
+  .card li:empty::before{content:"…";color:#aab}
+  [contenteditable]{outline:none;border-radius:4px}
+  [contenteditable]:focus{background:#fffbe6}
+  .single{flex:1;min-height:60px;white-space:pre-wrap}
+
+  .tall{grid-row:1 / span 2}
+  .purpose{background:var(--accent-soft);border-color:#c7d9ff}
+  .purpose h2{color:var(--accent)}
+  .bound{background:var(--warn-soft);border-color:#f6d8a8}
+  .bound h2{color:var(--warn)}
+  .skills{background:var(--violet-soft);border-color:#dcd0f7}
+  .skills h2{color:var(--violet)}
+  .mcps{background:var(--ok-soft);border-color:#bfe6d5}
+  .mcps h2{color:var(--ok)}
+  .tag{display:inline-block;font-size:11px;padding:2px 7px;border-radius:999px;background:#eef1f5;color:var(--muted);margin-left:6px;vertical-align:middle}
+
+  .legend{margin-top:18px;color:var(--muted);font-size:13px}
+  .legend b{color:var(--ink)}
+
+  @media (max-width:1100px){
+    .grid{grid-template-columns:1fr 1fr}
+    .tall{grid-row:auto}
+    .identity,.outputs{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:640px){
+    .grid,.identity,.outputs{grid-template-columns:1fr}
+  }
+  @media print{
+    @page{size:A3 landscape;margin:12mm}
+    body{background:#fff}
+    .wrap{max-width:none;padding:0}
+    .toolbar,.legend .hint{display:none}
+    .card{break-inside:avoid;min-height:0}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1 id="title">Agent Empathy Canvas</h1>
+      <p>Like a UX empathy canvas, but the persona is an agent working on a person's behalf. Fill it in to find out which <b>skills</b> to write and which <b>MCPs</b> to build.</p>
+    </div>
+    <div class="toolbar">
+      <button onclick="loadExample()">Load example</button>
+      <button onclick="clearCanvas()">Clear</button>
+      <button onclick="exportJSON()">Export JSON</button>
+      <button onclick="importJSON()">Import JSON</button>
+      <button class="primary" onclick="window.print()">Print / PDF</button>
+    </div>
+  </header>
+
+  <!-- Who the agent is -->
+  <section class="identity">
+    <div class="card" style="min-height:0">
+      <h2>Agent</h2>
+      <p class="q">What is this agent called, and where does it run?</p>
+      <div class="single" contenteditable data-key="agent_name"></div>
+    </div>
+    <div class="card" style="min-height:0">
+      <h2>Acts on behalf of</h2>
+      <p class="q">Which person or role is it working for?</p>
+      <div class="single" contenteditable data-key="on_behalf_of"></div>
+    </div>
+    <div class="card" style="min-height:0">
+      <h2>Task / job story</h2>
+      <p class="q">When [situation], I want the agent to [do], so that [outcome].</p>
+      <div class="single" contenteditable data-key="task"></div>
+    </div>
+    <div class="card" style="min-height:0">
+      <h2>Trigger</h2>
+      <p class="q">What starts it? A request, an event, a schedule?</p>
+      <div class="single" contenteditable data-key="trigger"></div>
+    </div>
+  </section>
+
+  <!-- The canvas -->
+  <section class="grid">
+    <div class="card purpose tall">
+      <h2>Purpose</h2>
+      <p class="q">Based on this task, what is the agent here to achieve? What does "done well" look like?</p>
+      <ul contenteditable data-key="purpose"><li></li></ul>
+    </div>
+
+    <div class="card">
+      <h2>Do / Execute <span class="tag">→ skills</span></h2>
+      <p class="q">What actions does it need to take or complete?</p>
+      <ul contenteditable data-key="execute"><li></li></ul>
+    </div>
+    <div class="card">
+      <h2>Consume <span class="tag">→ MCPs</span></h2>
+      <p class="q">What data, documents and systems does it need to read?</p>
+      <ul contenteditable data-key="consume"><li></li></ul>
+    </div>
+    <div class="card">
+      <h2>Discover <span class="tag">→ MCPs</span></h2>
+      <p class="q">What does it need to find out, look up or check before acting?</p>
+      <ul contenteditable data-key="discover"><li></li></ul>
+    </div>
+
+    <div class="card bound tall">
+      <h2>Boundaries</h2>
+      <p class="q">What stays with the human? When must it ask, escalate or stop? What must it never do?</p>
+      <ul contenteditable data-key="boundaries"><li></li></ul>
+    </div>
+
+    <div class="card">
+      <h2>Process <span class="tag">→ skills</span></h2>
+      <p class="q">What does it need to transform, analyse, calculate or decide?</p>
+      <ul contenteditable data-key="process"><li></li></ul>
+    </div>
+    <div class="card">
+      <h2>Inform <span class="tag">→ skills</span></h2>
+      <p class="q">Who does it need to tell, and what? Updates, notifications, records.</p>
+      <ul contenteditable data-key="inform"><li></li></ul>
+    </div>
+    <div class="card">
+      <h2>Explain <span class="tag">→ skills</span></h2>
+      <p class="q">What does it need to justify or make clear to the person — reasoning, confidence, options?</p>
+      <ul contenteditable data-key="explain"><li></li></ul>
+    </div>
+  </section>
+
+  <!-- What falls out -->
+  <section class="outputs">
+    <div class="card skills">
+      <h2>Skills to write</h2>
+      <p class="q">Instructions the agent needs. One per distinct capability: name — what it covers.</p>
+      <ul contenteditable data-key="skills"><li></li></ul>
+    </div>
+    <div class="card mcps">
+      <h2>MCPs to build</h2>
+      <p class="q">Data feeds and tools the agent needs. One per system: name — what it exposes (read / write).</p>
+      <ul contenteditable data-key="mcps"><li></li></ul>
+    </div>
+    <div class="card">
+      <h2>Success measures</h2>
+      <p class="q">How will we know the agent is doing the job well? Outcome, quality, time, trust.</p>
+      <ul contenteditable data-key="measures"><li></li></ul>
+    </div>
+  </section>
+
+  <p class="legend"><b>How to read it:</b> Purpose and Boundaries frame the agent. The six middle blocks are its needs. Needs tagged <span class="tag">→ skills</span> become instructions; needs tagged <span class="tag">→ MCPs</span> become data feeds. <span class="hint">Click any box to edit. Edits save in this browser; use Export JSON to keep or share them.</span></p>
+</div>
+
+<script>
+/* ---------- Data ----------
+   To ship a pre-filled canvas, replace CANVAS_DATA below.
+   Every key is optional. List keys take arrays of strings. */
+const CANVAS_DATA = {
+  "title": "Agent Empathy Canvas",
+  "agent_name": "",
+  "on_behalf_of": "",
+  "task": "",
+  "trigger": "",
+  "purpose": [],
+  "execute": [],
+  "consume": [],
+  "discover": [],
+  "process": [],
+  "inform": [],
+  "explain": [],
+  "boundaries": [],
+  "skills": [],
+  "mcps": [],
+  "measures": []
+};
+
+const EXAMPLE = {
+  "title": "Agent Empathy Canvas — Onboarding Coordinator Agent",
+  "agent_name": "Onboarding Coordinator (Copilot agent in Teams)",
+  "on_behalf_of": "Hiring manager in a business unit",
+  "task": "When a candidate accepts an offer, I want the agent to run the pre-day-one checklist, so that the new joiner has access, equipment and a plan on day one without me chasing anyone.",
+  "trigger": "Offer-accepted event from the HR system",
+  "purpose": [
+    "Get a new joiner fully ready for day one with no manager chasing",
+    "Done well = all access, kit and induction booked 3 working days before start, manager only asked to decide, never to chase"
+  ],
+  "execute": [
+    "Raise IT access and equipment requests",
+    "Book induction sessions and a buddy",
+    "Create the 30-60-90 plan draft from the role profile",
+    "Send welcome pack to the joiner"
+  ],
+  "consume": [
+    "Offer and role details (HR system)",
+    "Role profile and team structure",
+    "Standard access bundles per role (IT catalogue)",
+    "Induction calendar and buddy pool"
+  ],
+  "discover": [
+    "Which access bundle applies to this role and location",
+    "Who the approving line manager and IT owner are",
+    "Any site-specific requirements (badge, safety induction)"
+  ],
+  "process": [
+    "Map role → required systems, kit and inductions",
+    "Work back from start date to build the schedule",
+    "Detect blockers (unapproved requests, no buddy available)"
+  ],
+  "inform": [
+    "Manager: weekly status and any blocker needing a decision",
+    "Joiner: what to expect and what we need from them",
+    "IT / Facilities: requests raised and due dates"
+  ],
+  "explain": [
+    "Why a particular access bundle or induction was chosen",
+    "What is still at risk and what the manager can do about it",
+    "Confidence in the start-date readiness"
+  ],
+  "boundaries": [
+    "Never approves access itself — approvals stay with the manager",
+    "Never changes offer terms, pay or start date",
+    "Asks before anything that costs money beyond the standard bundle",
+    "Stops and escalates if the start date is under 5 working days away"
+  ],
+  "skills": [
+    "onboarding-checklist — the standard pre-day-one steps and how to work back from a start date",
+    "access-bundle-mapping — rules for role → systems/kit, with exceptions",
+    "status-update — how and when to brief manager, joiner and IT",
+    "blocker-escalation — what counts as a blocker and who to raise it to"
+  ],
+  "mcps": [
+    "hr-core — read offers, roles, start dates, org structure",
+    "it-service-catalogue — read bundles; write access and equipment requests",
+    "calendar — read induction slots; write bookings",
+    "buddy-pool — read availability; write assignment"
+  ],
+  "measures": [
+    "Joiners with full access on day one (target 95%)",
+    "Manager chasing time per joiner (target < 15 min)",
+    "Days before start that readiness is confirmed (target ≥ 3)",
+    "Joiner day-one satisfaction"
+  ]
+};
+
+const STORAGE_KEY = "agent-empathy-canvas:" + location.pathname;
+const fields = () => Array.from(document.querySelectorAll("[data-key]"));
+
+function render(data){
+  if(data.title){ document.getElementById("title").textContent = data.title; document.title = data.title; }
+  fields().forEach(el => {
+    const v = data[el.dataset.key];
+    if(el.tagName === "UL"){
+      const items = Array.isArray(v) && v.length ? v : [""];
+      el.innerHTML = items.map(t => `<li>${escapeHTML(t)}</li>`).join("");
+    } else {
+      el.textContent = v || "";
+    }
+  });
+}
+function collect(){
+  const out = { title: document.getElementById("title").textContent.trim() };
+  fields().forEach(el => {
+    if(el.tagName === "UL"){
+      out[el.dataset.key] = Array.from(el.querySelectorAll("li")).map(li => li.textContent.trim()).filter(Boolean);
+    } else {
+      out[el.dataset.key] = el.textContent.trim();
+    }
+  });
+  return out;
+}
+function escapeHTML(s){ return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function save(){ try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(collect())); }catch(e){} }
+function loadSaved(){ try{ const s = localStorage.getItem(STORAGE_KEY); return s ? JSON.parse(s) : null; }catch(e){ return null; } }
+
+function loadExample(){ render(EXAMPLE); save(); }
+function clearCanvas(){ if(confirm("Clear the canvas?")){ render(CANVAS_DATA); try{ localStorage.removeItem(STORAGE_KEY); }catch(e){} } }
+function exportJSON(){
+  const blob = new Blob([JSON.stringify(collect(), null, 2)], {type:"application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = (collect().title || "agent-empathy-canvas").replace(/[^\w-]+/g,"-").toLowerCase() + ".json";
+  a.click();
+}
+function importJSON(){
+  const inp = document.createElement("input"); inp.type = "file"; inp.accept = "application/json";
+  inp.onchange = () => { const f = inp.files[0]; if(!f) return;
+    f.text().then(t => { try{ render(JSON.parse(t)); save(); }catch(e){ alert("That file isn't valid JSON."); } }); };
+  inp.click();
+}
+
+/* Keep lists as lists: Enter adds a bullet, never a <div> */
+document.addEventListener("keydown", e => {
+  const ul = e.target.closest && e.target.closest("ul[contenteditable]");
+  if(ul && e.key === "Enter"){ e.preventDefault(); document.execCommand("insertHTML", false, "<li></li>"); }
+});
+document.addEventListener("input", save);
+
+/* Shipped data wins over a stale browser save when it has content */
+const shippedHasContent = Object.values(CANVAS_DATA).some(v => Array.isArray(v) ? v.length : (v && v !== "Agent Empathy Canvas"));
+render(shippedHasContent ? CANVAS_DATA : (loadSaved() || CANVAS_DATA));
+</script>
+</body>
+</html>

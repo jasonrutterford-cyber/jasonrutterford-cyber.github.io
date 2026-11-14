@@ -6,6 +6,7 @@ cover: /assets/img/posts/design-for-agents-cover.png
 image: /assets/img/posts/design-for-agents-cover.png
 description: "Most teams don't need to build an AI agent. Claude, Copilot and ChatGPT already are the agents; the work is teaching them your context with the right skills and MCPs, starting from the person they serve. The Agent Empathy Canvas, with a worked example and job stories."
 cover_alt: "We used to design for humans. Now we design for agents, too. A person at a screen, and an AI agent acting on their behalf with email, calendar, travel policy and bookings."
+tool: Agent Empathy Canvas
 tags: [Agent design, UX, Service design, AI]
 ---
 
@@ -41,6 +42,8 @@ An agent acting on someone's behalf takes actions, reads data, makes judgements 
 So I took the empathy canvas and turned it around. The persona in the middle is the agent. The person it works for stays in the frame, because everything the agent does is judged by whether that person ends up better off.
 
 ![The Agent Empathy Canvas: the agent in the middle, the person it serves alongside, with purpose, boundaries, what it must know how to do and what it must reach](/assets/img/posts/design-for-agents/agent-empathy-canvas.png)
+
+{% include tool-callout.html %}
 
 ## The Agent Empathy Canvas
 
@@ -117,5 +120,11 @@ There's something fitting about that: a skill teaching the agent how to work out
 - If the process owner can't read and sign off a skill, it's too vague or too technical.
 
 The agents are already here. Our job is to teach them well, starting from the people they serve.
+
+## Get the canvas
+
+{% include tool-callout.html %}
+
+Print it A3, or open the editable version in a browser. The worked example is in the PDF, so you can see every box filled before you run your own.
 
 I'd like to hear how others are approaching this. When your team decides what to teach Claude, Copilot or ChatGPT, where do you start?

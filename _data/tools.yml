@@ -6,3 +6,10 @@
   image: /assets/img/posts/did-anyone-ask-what-problem-it-solves/questions-to-brief.png
   article: /writing/did-anyone-ask-what-problem-it-solves/
   date: 2026-11-14
+- name: Agent Empathy Canvas
+  summary: A printable canvas for working out what an AI agent must do, know and deliver, starting from the person it serves. Blank template, worked example and a one-page guide. A3 PDF, plus an editable version.
+  url: /tools/agent-empathy-canvas/
+  download: /assets/downloads/agent-empathy-canvas.pdf
+  article: /writing/we-used-to-design-for-humans/
+  image: /assets/img/posts/design-for-agents/agent-empathy-canvas.png
+  date: 2026-11-07
