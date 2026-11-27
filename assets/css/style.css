@@ -356,3 +356,14 @@ html.t-dark .ico-moon,html.t-light .ico-sun{display:none}
 /* no footer: one quiet line */
 .disclaimer{font-size:14px;color:var(--muted);padding-top:24px;padding-bottom:48px;margin-bottom:0}
 .skip:focus{background:var(--surface);color:var(--text)}
+
+/* motion */
+@keyframes jr-fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:no-preference){
+main{animation:jr-fade .45s ease both}
+.theming,.theming *{transition:background-color .3s ease,color .3s ease,border-color .3s ease!important}
+.post-card,.card,.btn,.contact-list li a{transition:transform .25s ease,border-color .25s ease,color .2s ease}
+.post-card:hover,.contact-list li a:hover{transform:translateY(-4px)}
+.post-card .cover img{transition:transform .5s ease}.post-card:hover .cover img{transform:scale(1.03)}
+.btn:hover{transform:translateY(-1px)}
+}
