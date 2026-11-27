@@ -2,7 +2,7 @@
 layout: default
 title: About
 permalink: /about/
-description: Jason Rutterford, experience architect in Abu Dhabi. Customer experience, service design, business process design and colleague experience, with AI where it earns its place.
+description: Jason Rutterford, product and experience strategy leader in Abu Dhabi. Customer experience, service design, business process design and colleague experience, with AI where it earns its place.
 ---
 <section class="section glow" style="padding-top:40px;padding-bottom:0">
 <div class="wrap">
@@ -10,7 +10,7 @@ description: Jason Rutterford, experience architect in Abu Dhabi. Customer exper
 <img class="portrait" src="{{ '/assets/img/jason.png' | relative_url }}" alt="Jason Rutterford" width="940" height="940">
 <div>
 <h1>About</h1>
-<p class="lead measure">I'm Jason. Head of experience, experience leader and experience architect, based in Abu Dhabi.</p>
+<p class="lead measure">I'm Jason. Product and experience strategy leader, based in Abu Dhabi.</p>
 </div>
 </div>
 <div class="banner"><img src="{{ '/assets/img/illustrations/about-banner.png' | relative_url }}" alt="Discovery, design strategy and leadership, joined by one journey" width="1771" height="610"></div>
