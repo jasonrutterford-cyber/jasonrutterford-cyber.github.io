@@ -4,7 +4,7 @@
 # ------------------------------------------------------------
 
 title: Jason Rutterford
-tagline: Experience leader and architect in Abu Dhabi
+tagline: Product and experience strategy leader in Abu Dhabi
 description: >-
   Jason Rutterford is an experience leader and experience architect in Abu Dhabi, UAE.
   He helps leaders in government and large organisations find the real problem before
@@ -18,7 +18,7 @@ lang: en
 author:
   name: Jason Rutterford
   location: Abu Dhabi, UAE
-  job_title: Head of Experience, Experience Architect
+  job_title: Head of Digital Experience
 
 # Used by search engines and link previews (jekyll-seo-tag)
 logo: /assets/img/jason.png

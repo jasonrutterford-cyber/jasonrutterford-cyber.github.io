@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ site.lang | default: 'en' }}">
+<html lang="{{ site.lang | default: 'en' }}" class="t-dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,22 +8,22 @@
   {% if page.keywords or site.keywords %}<meta name="keywords" content="{{ page.keywords | default: site.keywords }}">{% endif %}
   {% include person-schema.html %}
   <link rel="icon" href="{{ '/assets/img/favicon.svg' | relative_url }}" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | absolute_url }}">
+  <script>try{if(localStorage.getItem('jr-theme')==='light'){document.documentElement.className='t-light'}}catch(e){}</script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="wrap">
-      <a class="brand" href="{{ '/' | relative_url }}">{% include icon.html name="mark" %}<span>{{ site.title }}</span></a>
+      <a class="brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
       <nav class="nav" aria-label="Main">
+        <a href="{{ '/#work' | relative_url }}">Work</a>
         <a href="{{ '/writing/' | relative_url }}" {% if page.url contains '/writing/' %}class="active"{% endif %}>Writing</a>
         <a href="{{ '/tools/' | relative_url }}" {% if page.url contains '/tools/' %}class="active"{% endif %}>Tools</a>
         <a href="{{ '/about/' | relative_url }}" {% if page.url == '/about/' %}class="active"{% endif %}>About</a>
         <a href="{{ '/contact/' | relative_url }}" {% if page.url == '/contact/' %}class="active"{% endif %}>Contact</a>
+        <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Switch to light mode"><svg class="ico-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg><svg class="ico-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg></button>
       </nav>
     </div>
   </header>
@@ -36,16 +36,11 @@
   {% include newsletter.html %}
   {% endif %}
 
-  <footer class="site-footer">
-    <div class="wrap">
-      <div>
-        {% if site.contact.linkedin != "" %}<a href="{{ site.contact.linkedin }}">LinkedIn</a>{% endif %}
-        {% if site.contact.x != "" %}<a href="{{ site.contact.x }}">X</a>{% endif %}
-        {% if site.contact.email != "" %}<a href="mailto:{{ site.contact.email }}">Email</a>{% endif %}
-        <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
-      </div>
-      <div>© {{ site.time | date: "%Y" }} {{ site.author.name }} · {{ site.author.location }} · Views are my own.</div>
-    </div>
-  </footer>
+  <p class="disclaimer wrap">Views are my own.</p>
+  <script>
+  (function(){var r=document.documentElement,b=document.getElementById('theme-toggle');
+  function label(){b.setAttribute('aria-label',r.className==='t-light'?'Switch to dark mode':'Switch to light mode')}
+  label();b.addEventListener('click',function(){r.className=r.className==='t-light'?'t-dark':'t-light';label();try{localStorage.setItem('jr-theme',r.className==='t-light'?'light':'dark')}catch(e){}});})();
+  </script>
 </body>
 </html>

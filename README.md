@@ -88,4 +88,8 @@ assets/css/        the stylesheet (brand colours at the top)
 assets/img/        images; posts/ for article covers
 ```
 
-Brand: Instrument Sans (headings condensed), ink `#151A22` on paper `#F2F2F3`, gradient green `#14B87A` → blue `#2F6BFF` → purple `#7B3FE4`, white cards with ink outlines and a grey offset shadow, outlined stick-figure illustrations with tilted gradient tiles.
+Brand (Midnight theme, dark and light): Plus Jakarta Sans, self-hosted in `assets/portfolio/`. Dark: background `#0B0D12`, surface `#151923`, text `#F4F5F7`, accent `#7CA0FF`. Light: background `#F6F7F9`, surface `#FFFFFF`, text `#0B0D12`, accent `#2B55E0`. Primary button `#4F7DFF`. The theme variables sit at the end of `assets/css/style.css`.
+
+## Portfolio pages
+
+`index.html` (home) and the four `work-*.html` case studies are self-contained pages with their own styles. They are served at `/`, `/work/tela/`, `/work/digital-home/`, `/work/planning/` and `/work/ai-design-system/`. Their images, fonts and the CV PDF are in `assets/portfolio/`. To update the CV, replace `assets/portfolio/Jason-Rutterford-CV.pdf` with a file of the same name.
