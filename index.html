@@ -31,6 +31,20 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 .t-dark .ico-moon,.t-light .ico-sun{display:none}
 html{scroll-behavior:smooth}img{max-width:100%}
 @media(max-width:720px){[style*="padding-left: 64px"]{padding-left:20px!important;padding-right:20px!important}}
+
+/* motion */
+@keyframes jr-fade{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:no-preference){
+body{animation:jr-fade .4s ease both}
+.theming,.theming *{transition:background-color .3s ease,color .3s ease,border-color .3s ease!important}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+#work a{transition:transform .25s ease,border-color .25s ease}
+#work a:hover{transform:translateY(-4px);border-color:var(--accent)}
+#work a img{transition:transform .5s ease}#work a:hover img{transform:scale(1.03)}
+a[style*="border-radius: 999px"],button{transition:transform .15s ease,background-color .2s ease,color .2s ease}
+a[style*="border-radius: 999px"]:hover{transform:translateY(-1px)}
+}
 </style>
 </head>
 <body style="background:#0B0D12">
@@ -76,7 +90,7 @@ html{scroll-behavior:smooth}img{max-width:100%}
 </section>
 
 <section style="max-width: 1232px; margin: 0 auto; padding-left: 64px; padding-right: 64px; padding-bottom: 96px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px">
-<div style="display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 800; font-size: 56px; line-height: 1; letter-spacing: -0.03em">16</div><div style="font-size: 15px; color: var(--muted)">years in enterprise platforms</div></div><div style="display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 800; font-size: 56px; line-height: 1; letter-spacing: -0.03em">33</div><div style="font-size: 15px; color: var(--muted)">product teams supported at Sainsbury's</div></div><div style="display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 800; font-size: 56px; line-height: 1; letter-spacing: -0.03em">83%</div><div style="font-size: 15px; color: var(--muted)">portal adoption, up from 34%</div></div><div style="display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 800; font-size: 56px; line-height: 1; letter-spacing: -0.03em">+20%</div><div style="font-size: 15px; color: var(--muted)">Vodafone sales enquiries</div></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 800; font-size: 56px; line-height: 1; letter-spacing: -0.03em">10</div><div style="font-size: 15px; color: var(--muted)">SLB products fed by one AI experience strategy</div></div><div style="display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 800; font-size: 56px; line-height: 1; letter-spacing: -0.03em">50+</div><div style="font-size: 15px; color: var(--muted)">reusable AI components in the SLB design system</div></div><div style="display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 800; font-size: 56px; line-height: 1; letter-spacing: -0.03em">90s</div><div style="font-size: 15px; color: var(--muted)">to load modelling software, down from 15 minutes</div></div><div style="display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 800; font-size: 56px; line-height: 1; letter-spacing: -0.03em">83%</div><div style="font-size: 15px; color: var(--muted)">portal adoption at Sainsbury&#39;s, up from 34%</div></div>
 </section>
 
 <div style="max-width: 1232px; margin: 0 auto; padding-left: 64px; padding-right: 64px; padding-bottom: 72px"><div style="border-top: 1px solid var(--line)"></div></div>
@@ -141,6 +155,15 @@ html{scroll-behavior:smooth}img{max-width:100%}
 try{m=localStorage.getItem('jr-theme')||'dark'}catch(e){}
 function set(x){m=x;r.className=x==='light'?'t-light':'t-dark';document.body.style.background=x==='light'?'#F6F7F9':'#0B0D12';b.setAttribute('aria-label',x==='light'?'Switch to dark mode':'Switch to light mode')}
 set(m);b.addEventListener('click',function(){set(m==='light'?'dark':'light');try{localStorage.setItem('jr-theme',m)}catch(e){}});})();
+</script>
+<script>
+(function(){if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+var els=[].slice.call(document.querySelectorAll('#root > section, #root > div > section, #work a, #writing a[style*="border-radius"]'));
+var vh=window.innerHeight;els=els.filter(function(e){return e.getBoundingClientRect().top>vh*0.85});
+var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{rootMargin:'0px 0px -8% 0px'});
+els.forEach(function(e,i){e.classList.add('rv');io.observe(e)});
+var b=document.getElementById('theme-toggle'),r=document.getElementById('root');
+if(b&&r)b.addEventListener('click',function(){r.classList.add('theming');setTimeout(function(){r.classList.remove('theming')},350)},true);})();
 </script>
 </body>
 </html>

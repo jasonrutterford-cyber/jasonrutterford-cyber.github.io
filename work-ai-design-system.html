@@ -30,6 +30,20 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 .t-dark .ico-moon,.t-light .ico-sun{display:none}
 html{scroll-behavior:smooth}img{max-width:100%}
 @media(max-width:720px){[style*="padding-left: 64px"]{padding-left:20px!important;padding-right:20px!important}}
+
+/* motion */
+@keyframes jr-fade{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:no-preference){
+body{animation:jr-fade .4s ease both}
+.theming,.theming *{transition:background-color .3s ease,color .3s ease,border-color .3s ease!important}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+#work a{transition:transform .25s ease,border-color .25s ease}
+#work a:hover{transform:translateY(-4px);border-color:var(--accent)}
+#work a img{transition:transform .5s ease}#work a:hover img{transform:scale(1.03)}
+a[style*="border-radius: 999px"],button{transition:transform .15s ease,background-color .2s ease,color .2s ease}
+a[style*="border-radius: 999px"]:hover{transform:translateY(-1px)}
+}
 </style>
 </head>
 <body style="background:#0B0D12">
@@ -54,7 +68,7 @@ html{scroll-behavior:smooth}img{max-width:100%}
 
 <section style="max-width: 1232px; margin: 0 auto; padding-left: 64px; padding-right: 64px; padding-bottom: 96px">
 <div style="background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px">
-<div style="display: flex; flex-direction: column; gap: 6px"><div style="font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent)">Problem</div><div>Every team was building its own AI patterns.</div></div><div style="display: flex; flex-direction: column; gap: 6px"><div style="font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent)">My role</div><div>Head of Experience, Platform and AI.</div></div><div style="display: flex; flex-direction: column; gap: 6px"><div style="font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent)">What I did</div><div>A maturity model, a component library and governance.</div></div><div style="display: flex; flex-direction: column; gap: 6px"><div style="font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent)">Delivered</div><div>A shared AI component library released to product teams.</div></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><div style="font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent)">Problem</div><div>Every team was building its own AI patterns.</div></div><div style="display: flex; flex-direction: column; gap: 6px"><div style="font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent)">My role</div><div>Head of Experience, Platform and AI.</div></div><div style="display: flex; flex-direction: column; gap: 6px"><div style="font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent)">What I did</div><div>A maturity model, a component library and governance.</div></div><div style="display: flex; flex-direction: column; gap: 6px"><div style="font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent)">Delivered</div><div>More than 50 reusable AI components that product teams can adopt to build consistent AI experiences.</div></div>
 </div>
 </section>
 
@@ -107,7 +121,7 @@ html{scroll-behavior:smooth}img{max-width:100%}
 <div style="background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 20px">Consistency</div><div style="color: var(--muted)">One trusted experience across products.</div></div>
 <div style="background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 20px">Speed</div><div style="color: var(--muted)">Teams start from a standard, not a blank page.</div></div>
 </div>
-<div style="border: 1px dashed var(--line); border-radius: 20px; padding: 20px 24px; color: var(--muted)">Results are confidential to SLB. I can talk through the approach and what it changed.</div>
+<div style="border: 1px dashed var(--line); border-radius: 20px; padding: 20px 24px; color: var(--muted)">What changed: more than 50 reusable AI components, available for products to adopt instead of building their own.</div>
 </section>
 
 <section style="max-width: 1232px; margin: 0 auto; padding-left: 64px; padding-right: 64px; padding-bottom: 96px">
@@ -129,6 +143,15 @@ html{scroll-behavior:smooth}img{max-width:100%}
 try{m=localStorage.getItem('jr-theme')||'dark'}catch(e){}
 function set(x){m=x;r.className=x==='light'?'t-light':'t-dark';document.body.style.background=x==='light'?'#F6F7F9':'#0B0D12';b.setAttribute('aria-label',x==='light'?'Switch to dark mode':'Switch to light mode')}
 set(m);b.addEventListener('click',function(){set(m==='light'?'dark':'light');try{localStorage.setItem('jr-theme',m)}catch(e){}});})();
+</script>
+<script>
+(function(){if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+var els=[].slice.call(document.querySelectorAll('#root > section, #root > div > section, #work a, #writing a[style*="border-radius"]'));
+var vh=window.innerHeight;els=els.filter(function(e){return e.getBoundingClientRect().top>vh*0.85});
+var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{rootMargin:'0px 0px -8% 0px'});
+els.forEach(function(e,i){e.classList.add('rv');io.observe(e)});
+var b=document.getElementById('theme-toggle'),r=document.getElementById('root');
+if(b&&r)b.addEventListener('click',function(){r.classList.add('theming');setTimeout(function(){r.classList.remove('theming')},350)},true);})();
 </script>
 </body>
 </html>

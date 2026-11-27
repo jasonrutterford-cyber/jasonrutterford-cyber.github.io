@@ -40,7 +40,7 @@
   <script>
   (function(){var r=document.documentElement,b=document.getElementById('theme-toggle');
   function label(){b.setAttribute('aria-label',r.className==='t-light'?'Switch to dark mode':'Switch to light mode')}
-  label();b.addEventListener('click',function(){r.className=r.className==='t-light'?'t-dark':'t-light';label();try{localStorage.setItem('jr-theme',r.className==='t-light'?'light':'dark')}catch(e){}});})();
+  label();b.addEventListener('click',function(){document.body.classList.add('theming');setTimeout(function(){document.body.classList.remove('theming')},350);r.className=r.className==='t-light'?'t-dark':'t-light';label();try{localStorage.setItem('jr-theme',r.className==='t-light'?'light':'dark')}catch(e){}});})();
   </script>
 </body>
 </html>
